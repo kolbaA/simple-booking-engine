@@ -17,4 +17,5 @@
 #
 class Booking < ApplicationRecord
   belongs_to :bookable, polymorphic: true
+  has_one :location, throught: :bookable
 end
