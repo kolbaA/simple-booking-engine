@@ -21,5 +21,7 @@
 class Room < ApplicationRecord
   enum room_type: %i[dorm private deluxe]
 
+  monetize :price_cents
+
   belongs_to :location
 end
