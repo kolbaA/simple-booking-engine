@@ -23,5 +23,7 @@ class Room < ApplicationRecord
 
   monetize :price_cents
 
+  has_many :bookings, as: :bookable
+
   belongs_to :location
 end
