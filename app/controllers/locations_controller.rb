@@ -4,6 +4,10 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @location = Location.find(location_params[:id])
+  end
+
+  def available_bookings
   end
 
   private

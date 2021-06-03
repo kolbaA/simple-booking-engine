@@ -16,12 +16,12 @@ locations = Location.create([
 ])
 
 locations.each do |location|
-  Room.create(location: location, room_type: 'dorm')
-  Room.create(location: location, room_type: 'privat')
-  Room.create(location: location, room_type: 'deluxe')
+  Room.create(location: location, room_type: 'dorm', price_cents: 1000)
+  Room.create(location: location, room_type: 'privat', price_cents: 2000)
+  Room.create(location: location, room_type: 'deluxe', price_cents: 3000)
 
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word)
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word)
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word)
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word)
+  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
 end

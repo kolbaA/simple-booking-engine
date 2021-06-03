@@ -1,0 +1,36 @@
+<%= content_for :head do %>
+  <link rel="stylesheet" type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<% end %>
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <p class='lead'>
+      <%= @location.country %> - <%= @location.city %>
+    </p>
+  </li>
+</ul>
+
+<%= form_with url: available_bookings_location_path(@location),
+    class: 'row row-cols-lg-auto g-3 align-items-end justify-content-center',
+    method: :get do |form| %>
+  <div class="col-12 md-3">
+    <%= form.label :starts_at, 'Starts at', class: 'form-label' %>
+    <%= form.text_field :starts_at, class: 'form-control datepicker' %>
+  </div>
+  <div class="col-12 md-3">
+    <%= form.label :ends_at, 'Ends at', class: 'form-label' %>
+    <%= form.text_field :ends_at, class: 'form-control datepicker' %>
+  </div>
+  <div class='col-12'>
+    <button type="submit" class="btn btn-primary">Check availability</button>
+  </div>
+<% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    $('.datepicker').datepicker({
+      format: 'd MM yyyy'
+    });
+  });
+</script>

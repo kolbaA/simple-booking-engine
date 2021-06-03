@@ -19,9 +19,5 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class Activity < ApplicationRecord
-  has_many :bookings, as: :bookable
-
-  belongs_to :location
-
-  monetize :price_cents
+  include Bookable
 end

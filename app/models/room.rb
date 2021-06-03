@@ -19,11 +19,7 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class Room < ApplicationRecord
+  include Bookable
+
   enum room_type: %i[dorm privat deluxe]
-
-  monetize :price_cents
-
-  has_many :bookings, as: :bookable
-
-  belongs_to :location
 end
