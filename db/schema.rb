@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_230939) do
+ActiveRecord::Schema.define(version: 2021_06_03_102110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_activities_on_location_id"
+  end
 
   create_table "bookings", force: :cascade do |t|
     t.string "user_id", null: false
@@ -44,5 +54,6 @@ ActiveRecord::Schema.define(version: 2021_06_02_230939) do
     t.index ["location_id"], name: "index_rooms_on_location_id"
   end
 
+  add_foreign_key "activities", "locations"
   add_foreign_key "rooms", "locations"
 end
