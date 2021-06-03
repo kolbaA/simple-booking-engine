@@ -19,7 +19,7 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class Room < ApplicationRecord
-  enum room_type: %i[dorm private deluxe]
+  enum room_type: %i[dorm privat deluxe]
 
   monetize :price_cents
 
