@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <% activities.each do |activity| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <p class='fw-bold mb-1'><%= activity.name.humanize %></p>
+        <p class='mb-1'><%= humanized_money_with_symbol(activity.price) %></p>
+      </div>
+      <button class="btn btn-primary">Book</button>
+    </li>
+  <% end %>
+</ul>

@@ -5,7 +5,7 @@
 
 <ul class="nav justify-content-center">
   <li class="nav-item">
-    <p class='lead'>
+    <p class='lead mt-2'>
       <%= @location.country %> - <%= @location.city %>
     </p>
   </li>
@@ -26,6 +26,16 @@
     <button type="submit" class="btn btn-primary">Check availability</button>
   </div>
 <% end %>
+
+<h3>Rooms</h3>
+<div id='location-roomss'>
+  <%= render partial: 'rooms/list', locals: { rooms: @location.rooms } %>
+</div>
+
+<h3 class='mt-2'>Activities</h3>
+<div id='location-activities'>
+  <%= render partial: 'activities/list', locals: { activities: @location.activities } %>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
