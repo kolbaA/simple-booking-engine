@@ -3,6 +3,7 @@
 # Table name: rooms
 #
 #  id             :bigint           not null, primary key
+#  max_available  :integer          default(10), not null
 #  price_cents    :integer          default(0), not null
 #  price_currency :string           default("USD"), not null
 #  room_type      :integer          not null
