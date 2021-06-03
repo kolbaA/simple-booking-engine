@@ -84,6 +84,7 @@ GEM
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.10.0)
+    ffaker (2.18.0)
     ffi (1.15.1)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -289,6 +290,7 @@ DEPENDENCIES
   annotate
   bootsnap (>= 1.4.4)
   capybara (>= 3.26)
+  ffaker
   guard-rspec
   jbuilder (~> 2.7)
   listen (~> 3.3)

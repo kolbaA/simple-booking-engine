@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'money-rails', '~>1.12'
 
 group :development, :test do
+  gem 'ffaker'
   gem 'guard-rspec'
   gem 'pry'
   gem 'pry-rails'
