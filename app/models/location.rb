@@ -13,4 +13,6 @@
 #  index_locations_on_country  (country)
 #
 class Location < ApplicationRecord
+  has_many :rooms, dependent: :destroy
+  has_many :activities, dependent: :destroy
 end
