@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light bg-light justify-content-center">
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <img src="https://www.selina.com/static/media/selina_logo_black.b62a0982.svg" width="100" class="d-inline-block align-top" alt="">
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>

@@ -1,5 +1,8 @@
 <div class='container'>
-  <% @locations.each do |location| %>
-    <p><%= link_to "#{location.country} - #{location.city}", location_path(location) %></p>
-  <% end %>
+  <ul class='list-group'>
+    <% @locations.each do |location| %>
+      <%= link_to "#{location.country} - #{location.city}", location_path(location),
+                  class: 'list-group-item list-group-item-action text-center' %>
+    <% end %>
+  </ul>
 </div>
