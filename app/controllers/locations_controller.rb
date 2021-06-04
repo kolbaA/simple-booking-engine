@@ -8,6 +8,12 @@ class LocationsController < ApplicationController
   end
 
   def available_rooms
+    @location = Location.find(location_params[:id])
+    @rooms = Locations::RoomsWithAvailabilityQuery.new(
+      location: @location,
+      from: Date.parse(location_params[:starts_at]),
+      to: Date.parse(location_params[:ends_at])
+    ).call
   end
 
   private

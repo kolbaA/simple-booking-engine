@@ -1,5 +1,6 @@
 <%= form_with url: available_rooms_location_path(@location),
     class: 'row row-cols-lg-auto g-3 align-items-end justify-content-center',
+    local: false,
     method: :get do |form| %>
   <div class="col-12 md-3">
     <%= form.label :starts_at, 'Starts at', class: 'form-label fw-bold' %>
