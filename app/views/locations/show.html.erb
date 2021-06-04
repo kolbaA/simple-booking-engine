@@ -11,24 +11,10 @@
   </li>
 </ul>
 
-<%= form_with url: available_bookings_location_path(@location),
-    class: 'row row-cols-lg-auto g-3 align-items-end justify-content-center',
-    method: :get do |form| %>
-  <div class="col-12 md-3">
-    <%= form.label :starts_at, 'Starts at', class: 'form-label' %>
-    <%= form.text_field :starts_at, class: 'form-control datepicker' %>
-  </div>
-  <div class="col-12 md-3">
-    <%= form.label :ends_at, 'Ends at', class: 'form-label' %>
-    <%= form.text_field :ends_at, class: 'form-control datepicker' %>
-  </div>
-  <div class='col-12'>
-    <button type="submit" class="btn btn-primary">Check availability</button>
-  </div>
-<% end %>
+<%= render partial: 'availability_form' %>
 
 <h3>Rooms</h3>
-<div id='location-roomss'>
+<div id='location-rooms'>
   <%= render partial: 'rooms/list', locals: { rooms: @location.rooms } %>
 </div>
 
