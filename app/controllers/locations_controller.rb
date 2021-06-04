@@ -7,12 +7,12 @@ class LocationsController < ApplicationController
     @location = Location.find(location_params[:id])
   end
 
-  def available_bookings
+  def available_rooms
   end
 
   private
 
   def location_params
-    params.permit(:id)
+    params.permit(:id, :starts_at, :ends_at)
   end
 end

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root 'locations#index'
 
   resources :locations, only: %i[index show] do
-    get :available_bookings, on: :member
+    get :available_rooms, on: :member
   end
 end
