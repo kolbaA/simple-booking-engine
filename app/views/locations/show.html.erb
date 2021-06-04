@@ -24,6 +24,14 @@
   <%= render partial: 'activities/list', locals: { activities: @location.activities } %>
 </div>
 
+<%= form_with url: bookings_path, method: :post do |form| %>
+  <%= form.hidden_field :starts_at, id: 'starts-at-input' %>
+  <%= form.hidden_field :ends_at, id: 'ends-at-input' %>
+  <%= form.hidden_field :activities_ids, id: 'activities-input' %>
+  <%= form.hidden_field :rooms_ids, id: 'rooms-input' %>
+  <button id='reserve' type='submit' class="book-btn btn btn-success disabled">Reserve</button>
+<% end %>
+
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
     $('.datepicker').datepicker({

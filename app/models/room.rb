@@ -25,4 +25,8 @@ class Room < ApplicationRecord
   has_many :inventories, dependent: :destroy
 
   enum room_type: %i[dorm privat deluxe]
+
+  def reserve!
+    
+  end
 end

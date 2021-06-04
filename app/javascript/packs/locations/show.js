@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         handeForActivity(bookableId, $btn);
         break;
     }
+    toggleReserveButton();
+    setRoomsAndActivitiesForForm();
   }
 
   const handleforRoom = (id, $btn) => {
@@ -74,7 +76,32 @@ document.addEventListener('DOMContentLoaded', function(event) {
     deselectBtn($btn)
   }
 
-  $('.book-btn').on('click', function(event) {
-    window.onBookButtonClick(event);
-  });
+  const toggleReserveButton = () => {
+    const $button = $('#reserve');
+    const { selectedRooms, selectedActivitities } = window;
+    if(selectedRooms.length === 0 && selectedActivitities.length === 0) {
+      $button.addClass('disabled');
+      return;
+    }
+    $button.removeClass('disabled');
+  }
+
+  const setRoomsAndActivitiesForForm = () => {
+    const { selectedRooms, selectedActivitities } = window;
+
+    $('#activities-input').prop('value', selectedActivitities);
+    $('#rooms-input').prop('value', selectedRooms);
+  }
+
+  $('.book-btn').on('click', (event) => { window.onBookButtonClick(event); });
+
+  $('#starts_at').on('change', function(event) {
+    const newValue = $(event.target).prop('value');
+    $('#starts-at-input').prop('value', newValue);
+  })
+
+  $('#ends_at').on('change', function(event) {
+    const newValue = $(event.target).prop('value');
+    $('#ends-at-input').prop('value', newValue);
+  })
 });

@@ -18,4 +18,8 @@
 class Booking < ApplicationRecord
   belongs_to :bookable, polymorphic: true
   has_one :location, through: :bookable
+
+  def reserve!
+    bookable.reserve!
+  end
 end

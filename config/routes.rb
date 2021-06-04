@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :locations, only: %i[index show] do
     get :available_rooms, on: :member
   end
+
+  resources :bookings, only: %i[create show]
 end

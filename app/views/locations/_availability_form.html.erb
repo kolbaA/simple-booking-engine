@@ -4,11 +4,11 @@
     method: :get do |form| %>
   <div class="col-12 md-3">
     <%= form.label :starts_at, 'Starts at', class: 'form-label fw-bold' %>
-    <%= form.text_field :starts_at, class: 'form-control datepicker' %>
+    <%= form.text_field :starts_at, autocomplete: 'off', class: 'form-control datepicker' %>
   </div>
   <div class="col-12 md-3">
     <%= form.label :ends_at, 'Ends at', class: 'form-label fw-bold' %>
-    <%= form.text_field :ends_at, class: 'form-control datepicker' %>
+    <%= form.text_field :ends_at, autocomplete: 'off', class: 'form-control datepicker' %>
   </div>
   <div class='col-12'>
     <button type="submit" class="btn btn-primary">Check availability</button>
