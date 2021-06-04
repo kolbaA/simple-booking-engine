@@ -10,7 +10,7 @@ module Rooms
     def call
       inventory_date = starts_date
 
-      room.transaction do
+      ActiveRecord::Base.transaction do
         until inventory_date == until_date
           room.inventories.create!(
             available_amount: room.max_available,
@@ -28,7 +28,7 @@ module Rooms
     def starts_date
       return Time.zone.now.to_date if room.inventories.blank?
 
-      room.inventories.order(:date).last.date
+      room.inventories.order(:date).last.date + 1.day
     end
   end
 end

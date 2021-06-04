@@ -20,4 +20,6 @@
 #
 class Inventory < ApplicationRecord
   belongs_to :room
+
+  scope :available, -> { where('available_amount > ?', 0) }
 end
