@@ -22,5 +22,7 @@
 class Room < ApplicationRecord
   include Bookable
 
+  has_many :inventories, dependent: :destroy
+
   enum room_type: %i[dorm privat deluxe]
 end

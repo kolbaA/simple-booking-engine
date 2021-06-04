@@ -16,12 +16,17 @@ locations = Location.create([
 ])
 
 locations.each do |location|
-  Room.create(location: location, room_type: 'dorm', price_cents: 1000)
-  Room.create(location: location, room_type: 'privat', price_cents: 2000)
-  Room.create(location: location, room_type: 'deluxe', price_cents: 3000)
+  room1 = Room.create!(location: location, room_type: 'dorm', price_cents: 1000)
+  Rooms::InventoriesCreatorService.new(room1, Time.zone.now + 2.month).call
 
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
-  Activity.create(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  room2 = Room.create!(location: location, room_type: 'privat', price_cents: 2000)
+  Rooms::InventoriesCreatorService.new(room2, Time.zone.now + 2.month).call
+
+  room3 = Room.create!(location: location, room_type: 'deluxe', price_cents: 3000)
+  Rooms::InventoriesCreatorService.new(room2, Time.zone.now + 2.month).call
+
+  Activity.create!(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  Activity.create!(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  Activity.create!(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
+  Activity.create!(location: location, name: FFaker::FreedomIpsum.word, price_cents: 1500)
 end
