@@ -9,7 +9,8 @@ module Rooms
     end
 
     def call
-      room.inventories.available.where(date: [from..to]).count == days_amount_in_daterange
+      avaiable_room_ids = room.inventories.available.where(date: [from...to]).lock.pluck(:id)
+      avaiable_room_ids.count == days_amount_in_daterange
     end
 
     private

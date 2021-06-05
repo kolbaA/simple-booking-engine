@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(event) {
 
-  window.selectedRooms = [];
+  window.selectedRoom = '';
   window.selectedActivitities = [];
 
   window.onBookButtonClick = (event) => {
@@ -51,15 +51,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   const bookRoom = (roomId, $btn) => {
-    window.selectedRooms.push(roomId);
+    window.selectedRoom = roomId;
+    $('#location-rooms .book-btn').each(function() { deselectBtn($(this)); });
     selectBtn($btn);
   }
 
   const cancelRoom = (roomId, $btn) => {
-    const indexToRemove = window.selectedRooms.indexOf(roomId);
-    if (indexToRemove !== -1 ) {
-      window.selectedRooms.splice(indexToRemove, 1);
-    }
+    window.selectedRoom = '';
     deselectBtn($btn)
   }
 
@@ -78,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   const toggleReserveButton = () => {
     const $button = $('#reserve');
-    const { selectedRooms, selectedActivitities } = window;
-    if(selectedRooms.length === 0 && selectedActivitities.length === 0) {
+    const { selectedRoom, selectedActivitities } = window;
+    if(selectedRoom  === '' && selectedActivitities.length === 0) {
       $button.addClass('disabled');
       return;
     }
@@ -87,10 +85,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
 
   const setRoomsAndActivitiesForForm = () => {
-    const { selectedRooms, selectedActivitities } = window;
+    const { selectedRoom, selectedActivitities } = window;
 
     $('#activities-input').prop('value', selectedActivitities);
-    $('#rooms-input').prop('value', selectedRooms);
+    $('#rooms-input').prop('value', selectedRoom);
   }
 
   $('.book-btn').on('click', (event) => { window.onBookButtonClick(event); });

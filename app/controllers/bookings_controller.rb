@@ -5,6 +5,8 @@ class BookingsController < ApplicationController
 
   def create
     binding.pry
+    booking = Bookings::CreationService.new(booking_params, user_id: session.id).call
+    
   end
 
   def show
@@ -13,7 +15,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.permit(:starts_at, :ends_at, :activities_ids, :rooms_ids)
+    params.permit(:starts_at, :ends_at, :activities_ids, :room_id)
   end
 
   def beautify_params
