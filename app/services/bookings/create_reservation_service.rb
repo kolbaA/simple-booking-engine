@@ -36,7 +36,7 @@ module Bookings
     def reserve_room!
       Rooms::ReservationService.new(
         room: room,
-        booking: booking,
+        booking: booking
       ).call
     end
 

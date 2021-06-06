@@ -10,71 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_140153) do
-
+ActiveRecord::Schema.define(version: 20_210_606_140_153) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "activities", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
-    t.bigint "location_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["location_id"], name: "index_activities_on_location_id"
+  create_table 'activities', force: :cascade do |t|
+    t.string 'name', null: false
+    t.integer 'price_cents', default: 0, null: false
+    t.string 'price_currency', default: 'USD', null: false
+    t.bigint 'location_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['location_id'], name: 'index_activities_on_location_id'
   end
 
-  create_table "booking_items", force: :cascade do |t|
-    t.bigint "booking_id", null: false
-    t.string "bookable_type", null: false
-    t.bigint "bookable_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bookable_type", "bookable_id"], name: "index_booking_items_on_bookable"
-    t.index ["booking_id"], name: "index_booking_items_on_booking_id"
+  create_table 'booking_items', force: :cascade do |t|
+    t.bigint 'booking_id', null: false
+    t.string 'bookable_type', null: false
+    t.bigint 'bookable_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[bookable_type bookable_id], name: 'index_booking_items_on_bookable'
+    t.index ['booking_id'], name: 'index_booking_items_on_booking_id'
   end
 
-  create_table "bookings", force: :cascade do |t|
-    t.string "user_id", null: false
-    t.datetime "starts_at", null: false
-    t.datetime "ends_at", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "location_id", null: false
+  create_table 'bookings', force: :cascade do |t|
+    t.string 'user_id', null: false
+    t.datetime 'starts_at', null: false
+    t.datetime 'ends_at', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.bigint 'location_id', null: false
   end
 
-  create_table "inventories", force: :cascade do |t|
-    t.bigint "room_id", null: false
-    t.date "date", null: false
-    t.integer "available_amount", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["date", "room_id"], name: "index_inventories_on_date_and_room_id", unique: true
-    t.index ["room_id"], name: "index_inventories_on_room_id"
+  create_table 'inventories', force: :cascade do |t|
+    t.bigint 'room_id', null: false
+    t.date 'date', null: false
+    t.integer 'available_amount', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[date room_id], name: 'index_inventories_on_date_and_room_id', unique: true
+    t.index ['room_id'], name: 'index_inventories_on_room_id'
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string "country", null: false
-    t.string "city", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["country"], name: "index_locations_on_country"
+  create_table 'locations', force: :cascade do |t|
+    t.string 'country', null: false
+    t.string 'city', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['country'], name: 'index_locations_on_country'
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer "room_type", null: false
-    t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
-    t.bigint "location_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "max_available", default: 10, null: false
-    t.index ["location_id"], name: "index_rooms_on_location_id"
+  create_table 'rooms', force: :cascade do |t|
+    t.integer 'room_type', null: false
+    t.integer 'price_cents', default: 0, null: false
+    t.string 'price_currency', default: 'USD', null: false
+    t.bigint 'location_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'max_available', default: 10, null: false
+    t.index ['location_id'], name: 'index_rooms_on_location_id'
   end
 
-  add_foreign_key "activities", "locations"
-  add_foreign_key "booking_items", "bookings"
-  add_foreign_key "inventories", "rooms"
-  add_foreign_key "rooms", "locations"
+  add_foreign_key 'activities', 'locations'
+  add_foreign_key 'booking_items', 'bookings'
+  add_foreign_key 'inventories', 'rooms'
+  add_foreign_key 'rooms', 'locations'
 end

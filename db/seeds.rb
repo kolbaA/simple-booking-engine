@@ -6,14 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 locations = Location.create([
-  { city: 'Antigua', country: 'Guatemala' },
-  { city: 'Bocas Del Toro', country: 'Panama' },
-  { city: 'Cancun', country: 'Mexico' },
-  { city: 'Cartagena', country: 'Columbia' },
-  { city: 'Granada', country: 'Nicaragua' }
-])
+                              { city: 'Antigua', country: 'Guatemala' },
+                              { city: 'Bocas Del Toro', country: 'Panama' },
+                              { city: 'Cancun', country: 'Mexico' },
+                              { city: 'Cartagena', country: 'Columbia' },
+                              { city: 'Granada', country: 'Nicaragua' }
+                            ])
 
 locations.each do |location|
   room1 = Room.create!(location: location, room_type: 'dorm', price_cents: 1000)

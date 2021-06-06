@@ -4,7 +4,6 @@ module Api
       format :json
 
       route_param :location_id do
-
         resource :rooms do
           desc 'Returns a List of available rooms for specific location'
           params do

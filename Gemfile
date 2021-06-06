@@ -28,8 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'money-rails', '~>1.12'
 gem 'grape'
+gem 'money-rails', '~>1.12'
 
 group :development, :test do
   gem 'ffaker'

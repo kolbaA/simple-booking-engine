@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class BookingsController < ApplicationController
-
   def create
     booking = Bookings::CreateReservationService.new(
       booking_params,

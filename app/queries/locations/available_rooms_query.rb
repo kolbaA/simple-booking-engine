@@ -9,11 +9,11 @@ module Locations
     end
 
     def call
-      location.rooms.joins(:inventories).
-        where(inventories: { date: [from...to] }).
-        where('inventories.available_amount > 0').
-        group('rooms.id').
-        having('count(rooms.id) = ?', days_amount_in_daterange)
+      location.rooms.joins(:inventories)
+              .where(inventories: { date: [from...to] })
+              .where('inventories.available_amount > 0')
+              .group('rooms.id')
+              .having('count(rooms.id) = ?', days_amount_in_daterange)
     end
 
     private
