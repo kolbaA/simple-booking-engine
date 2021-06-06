@@ -15,4 +15,5 @@
 class Location < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :activities, dependent: :destroy
+  has_many :bookings
 end

@@ -2,39 +2,33 @@
 
 module Rooms
   class ReservationService
-    def initialize(room:, starts_at:, ends_at:, user_id:)
+    def initialize(room:, booking:)
       @room = room
-      @starts_at = starts_at
-      @ends_at = ends_at
-      @user_id = user_id
+      @booking = booking
     end
 
     def call
       raise 'Room is unavailable for booking' unless available_for_booking?
 
       room.transaction do
-        room.inventories.available.where(date: [starts_at...ends_at]).lock.each do |inventory|
+        room.inventories.available.where(date: [booking.starts_at...booking.ends_at]).lock.each do |inventory|
           inventory.lock!
-          inventory.available_amount =- 1
+          inventory.decrement!(:available_amount)
           inventory.save!
         end
-        room.bookings.create!(
-          starts_at: starts_at,
-          ends_at: ends_at,
-          user_id: user_id
-        )
+        room.booking_items.create!(booking: booking)
       end
     end
 
     private
 
-    attr_reader :room, :ends_at, :starts_at, :user_id
+    attr_reader :room, :booking
 
     def available_for_booking?
       Rooms::AvailabilityCheckerService.new(
         room: room,
-        from: starts_at,
-        to: ends_at
+        from: booking.starts_at,
+        to: booking.ends_at
       ).call
     end
   end

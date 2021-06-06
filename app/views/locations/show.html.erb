@@ -25,6 +25,7 @@
 </div>
 
 <%= form_with url: bookings_path, method: :post do |form| %>
+  <%= form.hidden_field :location_id, value: @location.id %>
   <%= form.hidden_field :starts_at, id: 'starts-at-input' %>
   <%= form.hidden_field :ends_at, id: 'ends-at-input' %>
   <%= form.hidden_field :activities_ids, id: 'activities-input' %>

@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     get :available_rooms, on: :member
   end
 
-  resources :bookings, only: %i[create show]
+  resources :bookings, only: %i[create] do
+    get :confirmation, on: :member
+  end
+
+  get :booking_error, controller: :bookings
 end

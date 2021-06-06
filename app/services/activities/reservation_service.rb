@@ -2,23 +2,17 @@
 
 module Activities
   class ReservationService
-    def initialize(activity:, starts_at:, ends_at:, user_id:)
+    def initialize(activity:, booking:)
       @activity = activity
-      @starts_at = starts_at
-      @ends_at = ends_at
-      @user_id = user_id
+      @booking = booking
     end
 
     def call
-      activity.bookings.create!(
-        starts_at: starts_at,
-        ends_at: ends_at,
-        user_id: user_id
-      )
+      activity.booking_items.create!(booking: booking)
     end
 
     private
 
-    attr_reader :activity, :starts_at, :ends_at, :user_id
+    attr_reader :activity, :booking
   end
 end

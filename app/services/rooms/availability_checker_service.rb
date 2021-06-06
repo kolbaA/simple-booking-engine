@@ -4,8 +4,8 @@ module Rooms
   class AvailabilityCheckerService
     def initialize(room:, from:, to:)
       @room = room
-      @from = from
-      @to = to
+      @from = from.to_date
+      @to = to.to_date
     end
 
     def call
@@ -18,7 +18,7 @@ module Rooms
     attr_reader :room, :from, :to
 
     def days_amount_in_daterange
-      (to - from).to_i + 1
+      (to - from).to_i
     end
   end
 end
