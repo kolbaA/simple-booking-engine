@@ -11,9 +11,8 @@ module Api
             requires :ends_at, types: String, desc: 'available to'
           end
           get do
-            location = Location.find(params[:location_id])
-            ::Locations::RoomsWithAvailabilityQuery.new(
-              location: location,
+            ::Locations::AvailableRoomsQuery.new(
+              location: Location.find(params[:location_id]),
               from: Date.parse(params[:starts_at]),
               to: Date.parse(params[:ends_at])
             ).call

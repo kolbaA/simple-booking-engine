@@ -21,7 +21,7 @@ module Locations
     attr_reader :from, :to, :location
 
     def days_amount_in_daterange
-      (to - from).to_i + 1
+      (to - from).to_i
     end
   end
 end

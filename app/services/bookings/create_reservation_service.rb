@@ -6,7 +6,7 @@ module Bookings
       @starts_at = creation_params[:starts_at]
       @ends_at = creation_params[:ends_at]
       @room_id = creation_params[:room_id]
-      @activities_ids = creation_params[:activities_ids].split(',')
+      @activities_ids = creation_params[:activities_ids]&.split(',')
       @location_id = creation_params[:location_id]
       @user_id = user_id
     end
@@ -50,11 +50,11 @@ module Bookings
     end
 
     def room
-      @room ||= Room.find(room_id)
+      @room ||= location.rooms.find(room_id)
     end
 
     def activities
-      @activities ||= Activity.where(id: activities_ids)
+      @activities ||= location.activities.where(id: activities_ids)
     end
 
     def location
