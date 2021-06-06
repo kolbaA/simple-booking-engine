@@ -6,7 +6,7 @@ module Bookings
       @starts_at = creation_params[:starts_at]
       @ends_at = creation_params[:ends_at]
       @room_id = creation_params[:room_id]
-      @activities_ids = creation_params[:activities_ids]
+      @activities_ids = creation_params[:activities_ids].split(',')
       @location_id = creation_params[:location_id]
       @user_id = user_id
     end
@@ -45,7 +45,7 @@ module Bookings
         Activities::ReservationService.new(
           activity: activity,
           booking: booking
-        )
+        ).call
       end
     end
 

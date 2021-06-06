@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class BookingsController < ApplicationController
-  before_action :beautify_params, only: :create
 
   def create
-    booking = Bookings::CreateReservationService.new(booking_params, user_id: session.id).call
+    booking = Bookings::CreateReservationService.new(
+      booking_params,
+      user_id: session.id
+    ).call
 
     redirect_to confirmation_booking_path(booking)
   rescue StandardError
@@ -21,9 +23,5 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.permit(:starts_at, :ends_at, :activities_ids, :room_id, :location_id, :id)
-  end
-
-  def beautify_params
-    params[:activities_ids] = params[:activities_ids].split(',')
   end
 end
