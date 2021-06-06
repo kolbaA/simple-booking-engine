@@ -3,17 +3,18 @@ module Api
     class Rooms < Grape::API
       format :json
 
-      resource :rooms do
-        desc 'Returns a List of available rooms for specific location'
-        params do
-          requires :starts_at, types: [Date, DateTime], desc: 'available from'
-          requires :ends_at, types: [Date, DateTime], desc: 'available to'
-        end
-        route_param :location_id do
+      route_param :location_id do
+
+        resource :rooms do
+          desc 'Returns a List of available rooms for specific location'
+          params do
+            requires :starts_at, type: String, desc: 'available from'
+            requires :ends_at, types: String, desc: 'available to'
+          end
           get do
             location = Location.find(params[:location_id])
-            Locations::RoomsWithAvailabilityQuery.new(
-              location: @location,
+            ::Locations::RoomsWithAvailabilityQuery.new(
+              location: location,
               from: Date.parse(params[:starts_at]),
               to: Date.parse(params[:ends_at])
             ).call
