@@ -20,7 +20,4 @@
 #
 class Activity < ApplicationRecord
   include Bookable
-
-  def reserve!
-  end
 end

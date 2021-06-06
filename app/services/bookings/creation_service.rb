@@ -11,36 +11,33 @@ module Bookings
     end
 
     def call
-      raise 'Room is not available for booking' unless room_available_for_booking?
-
       ActiveRecord::Base.transaction do
-        Rooms::ReservationService.new(
-          room: room,
-          starts_at: starts_at,
-          ends_at: ends_at,
-          user_id: user_id
-        ).call
-        room.reserve!(user_id)
-        activities_ids.each { |activity| activity.reserve!(user_id) }
+        booking = reserve_room!
+        reserve_activities!
       end
-  # check that room available
-    # if false -> return and show errors
-    # if true
-    #  create booking
-    #  decrement all inventories.available_amount for selected dates
-    #  create booking for activities      
     end
 
     private
 
     attr_reader :starts_at, :ends_at, :room_id, :activities_ids, :user_id
 
-    def room_available_for_booking?
-      Rooms::AvailabilityCheckerService.new(
+    def reserve_room!
+      Rooms::ReservationService.new(
         room: room,
-        from: starts_at,
-        to: ends_at
+        starts_at: starts_at,
+        ends_at: ends_at,
+        user_id: user_id
       ).call
+    end
+
+    def reserve_activities!
+      activities_ids.each do |activity_id|
+        Activities::ReservationService.new(
+          activity: Activity.find(activity_id)
+          starts_at: starts_at,
+          ends_at: ends_at
+        )
+      end
     end
 
     def room

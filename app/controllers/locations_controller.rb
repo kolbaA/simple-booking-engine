@@ -5,7 +5,6 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(location_params[:id])
-    binding.pry
   end
 
   def available_rooms

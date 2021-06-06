@@ -3,7 +3,7 @@
     <% available = room.respond_to?(:available) ? room.available : false %>
     <li data-bookable-type='room' data-bookable-id="<%= room.id %>" class="list-group-item d-flex justify-content-between align-items-center">
       <div>
-        <p class='fw-bold mb-1'><%= room.room_type.humanize %></p>
+        <p class='fw-bold mb-1'><%= room.display_room_type %></p>
         <p class='mb-1'><%= humanized_money_with_symbol(room.price) %></p>
       </div>
       <button onClick="window.onBookButtonClick(event)" class="book-btn btn btn-primary <%= 'disabled' unless available %>">Book</button>

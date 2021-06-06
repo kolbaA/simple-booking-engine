@@ -26,7 +26,9 @@ class Room < ApplicationRecord
 
   enum room_type: %i[dorm privat deluxe]
 
-  def reserve!
-    
+  def display_room_type
+    return 'Private' if privat?
+
+    room_type.humanize
   end
 end
