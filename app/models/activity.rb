@@ -20,4 +20,6 @@
 #
 class Activity < ApplicationRecord
   include Bookable
+
+  validates :name, presence: true
 end

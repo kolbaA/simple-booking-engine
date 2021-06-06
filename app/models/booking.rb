@@ -16,4 +16,6 @@ class Booking < ApplicationRecord
   has_many :booking_items, dependent: :destroy
   has_many :rooms, through: :booking_items, source: :bookable, source_type: 'Room'
   has_many :activities, through: :booking_items, source: :bookable, source_type: 'Activity'
+
+  validates :user_id, :location_id, :starts_at, :ends_at, presence: true
 end

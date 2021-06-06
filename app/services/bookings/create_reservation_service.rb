@@ -12,6 +12,8 @@ module Bookings
     end
 
     def call
+      # TODO: add retry when transaction fails with
+      # ERROR: could not serialize access due to concurrent update
       ActiveRecord::Base.transaction(isolation: :repeatable_read) do
         create_booking!
         reserve_room!

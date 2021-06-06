@@ -26,6 +26,8 @@ class Room < ApplicationRecord
 
   enum room_type: %i[dorm privat deluxe]
 
+  validates :room_type, :max_available, presence: true
+
   def display_room_type
     return 'Private' if privat?
 

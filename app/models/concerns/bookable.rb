@@ -6,5 +6,7 @@ module Bookable
     has_many :bookings, through: :booking_items, source: :booking
     belongs_to :location
     monetize :price_cents
+
+    validates :location_id, :price_cents, :price_currency, presence: true
   end
 end

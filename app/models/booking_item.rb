@@ -21,4 +21,6 @@
 class BookingItem < ApplicationRecord
   belongs_to :booking
   belongs_to :bookable, polymorphic: true
+
+  validates :booking_id, :bookable_id, :bookable_type, presence: true
 end
