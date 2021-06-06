@@ -32,6 +32,7 @@ gem 'grape'
 gem 'money-rails', '~>1.12'
 
 group :development, :test do
+  gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'guard-rspec'
   gem 'pry'
