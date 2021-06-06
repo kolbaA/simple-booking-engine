@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'money-rails', '~>1.12'
+gem 'grape'
 
 group :development, :test do
   gem 'ffaker'
