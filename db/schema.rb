@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_111612) do
+ActiveRecord::Schema.define(version: 2021_06_06_140153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,23 @@ ActiveRecord::Schema.define(version: 2021_06_04_111612) do
     t.index ["location_id"], name: "index_activities_on_location_id"
   end
 
-  create_table "bookings", force: :cascade do |t|
-    t.string "user_id", null: false
+  create_table "booking_items", force: :cascade do |t|
+    t.bigint "booking_id", null: false
     t.string "bookable_type", null: false
     t.bigint "bookable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bookable_type", "bookable_id"], name: "index_booking_items_on_bookable"
+    t.index ["booking_id"], name: "index_booking_items_on_booking_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.string "user_id", null: false
     t.datetime "starts_at", null: false
     t.datetime "ends_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["bookable_type", "bookable_id"], name: "index_bookings_on_bookable"
+    t.bigint "location_id", null: false
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -66,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_111612) do
   end
 
   add_foreign_key "activities", "locations"
+  add_foreign_key "booking_items", "bookings"
   add_foreign_key "inventories", "rooms"
   add_foreign_key "rooms", "locations"
 end
