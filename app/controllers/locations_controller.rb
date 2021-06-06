@@ -1,24 +1,19 @@
 class LocationsController < ApplicationController
+  before_action :find_location, only: %i[show available_rooms]
+
   def index
     @locations = Location.all
   end
 
-  def show
-    @location = Location.find(location_params[:id])
-  end
-
-  def available_rooms
-    @location = Location.find(location_params[:id])
-    @rooms = Locations::RoomsWithAvailabilityQuery.new(
-      location: @location,
-      from: Date.parse(location_params[:starts_at]),
-      to: Date.parse(location_params[:ends_at])
-    ).call
-  end
+  def show; end
 
   private
 
   def location_params
     params.permit(:id, :starts_at, :ends_at)
+  end
+
+  def find_location
+    @location = Location.find(location_params[:id] || location_params[:location_id])
   end
 end
