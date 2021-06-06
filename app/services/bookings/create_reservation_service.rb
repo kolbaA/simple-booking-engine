@@ -12,7 +12,7 @@ module Bookings
     end
 
     def call
-      ActiveRecord::Base.transaction do
+      ActiveRecord::Base.transaction(isolation: :repeatable_read) do
         create_booking!
         reserve_room!
         reserve_activities!
