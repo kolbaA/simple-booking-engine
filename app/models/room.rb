@@ -21,10 +21,11 @@
 #
 class Room < ApplicationRecord
   include Bookable
+  ROOM_TYPES = %i[dorm privat deluxe]
 
   has_many :inventories, dependent: :destroy
 
-  enum room_type: %i[dorm privat deluxe]
+  enum room_type: ROOM_TYPES
 
   validates :room_type, :max_available, presence: true
 
