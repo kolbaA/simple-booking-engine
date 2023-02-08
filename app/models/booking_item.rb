@@ -23,4 +23,8 @@ class BookingItem < ApplicationRecord
   belongs_to :bookable, polymorphic: true
 
   validates :booking_id, :bookable_id, :bookable_type, presence: true
+
+  def test_method
+    puts 5
+  end
 end
